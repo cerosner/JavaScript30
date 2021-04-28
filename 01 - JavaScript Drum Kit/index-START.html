@@ -59,13 +59,23 @@
 <script>
   window.addEventListener('keydown', function(e) {
     // Find appropriate audio tag
-    const audio = document.querySelector(`audio[data-key="${e.keyCode}"`)
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
+    // Find appropriate class='key' div to highlight
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
 
     if (!audio) return // stops function
-    
+
+    key.classList.add('playing') // style change
     audio.currentTime = 0 // rewinds audio
     audio.play()
   })
+
+  const keys = document.querySelectorAll('.key')
+  // Must add Event Listener to each element in Array
+  keys.forEach(key => key.addEventListener('transitionend', function (e) {
+    if (e.propertyName !== 'transform') return // completes transition
+    this.classList.remove('playing')
+  }))
 </script>
 </body>
 </html>
