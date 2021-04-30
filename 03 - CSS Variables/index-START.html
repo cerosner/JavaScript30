@@ -62,6 +62,16 @@
 </style>
 
 <script>
+  // Select all inputs and update CSS variables accordingly
+  const inputs = document.querySelectorAll('.controls input')
+  // Returns a Node List NOT Array
+
+  function handleUpdate() {
+    console.log(this.value)
+  }
+
+  inputs.forEach(input => input.addEventListener('change', handleUpdate))
+  inputs.forEach(input => input.addEventListener('mousemove', handleUpdate))
 </script>
 </body>
 </html>
